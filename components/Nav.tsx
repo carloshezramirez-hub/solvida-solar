@@ -28,7 +28,7 @@ export default function Nav({ dict, locale }: Props) {
     <nav
       className={`fixed top-8 w-full z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-[#FEFBF6]/95 backdrop-blur-md shadow-sm border-b border-[#E7E1D5]"
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#d1fae5]"
           : "bg-transparent"
       }`}
       aria-label="Main navigation"
@@ -40,8 +40,8 @@ export default function Nav({ dict, locale }: Props) {
             className="text-xl font-extrabold tracking-tight"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
-            <span className="text-[#D97706]">SOL</span>
-            <span className="text-[#1C1917]">VIDA</span>
+            <span className="text-[#16a34a]">SOL</span>
+            <span className="text-[#052e16]">VIDA</span>
           </span>
         </Link>
 
@@ -51,20 +51,20 @@ export default function Nav({ dict, locale }: Props) {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-[#44403C] hover:text-[#D97706] transition-colors font-medium"
+              className="text-sm text-[#166534] hover:text-[#16a34a] transition-colors font-medium"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#formulario"
-            className="bg-[#D97706] hover:bg-[#B45309] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors"
+            className="bg-[#16a34a] hover:bg-[#15803d] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors shadow-sm"
           >
             {dict.nav.ctaNav}
           </a>
           <a
             href={`/${altLocale}`}
-            className="text-xs text-[#78716C] hover:text-[#D97706] transition-colors font-medium border border-[#E7E1D5] px-2.5 py-1 rounded-full"
+            className="text-xs text-[#4b6a55] hover:text-[#16a34a] transition-colors font-medium border border-[#d1fae5] hover:border-[#86efac] px-2.5 py-1 rounded-full"
             aria-label={dict.nav.langLabel}
           >
             {dict.nav.langSwitch}
@@ -73,7 +73,7 @@ export default function Nav({ dict, locale }: Props) {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-[#1C1917] p-2 rounded-lg hover:bg-[#F5F0E8] transition-colors"
+          className="md:hidden text-[#052e16] p-2 rounded-lg hover:bg-[#f0fdf4] transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Menú"
           aria-expanded={open}
@@ -90,13 +90,13 @@ export default function Nav({ dict, locale }: Props) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#FEFBF6] border-t border-[#E7E1D5] px-4 py-4 shadow-lg">
+        <div className="md:hidden bg-white border-t border-[#d1fae5] px-4 py-4 shadow-lg">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-[#44403C] hover:text-[#D97706] font-medium border-b border-[#F5F0E8] transition-colors"
+              className="block py-3 text-[#166534] hover:text-[#16a34a] font-medium border-b border-[#f0fdf4] transition-colors"
             >
               {l.label}
             </a>
@@ -104,13 +104,13 @@ export default function Nav({ dict, locale }: Props) {
           <a
             href="#formulario"
             onClick={() => setOpen(false)}
-            className="block mt-4 bg-[#D97706] hover:bg-[#B45309] text-white text-center font-semibold py-3 rounded-full transition-colors"
+            className="block mt-4 bg-[#16a34a] hover:bg-[#15803d] text-white text-center font-semibold py-3 rounded-full transition-colors"
           >
             {dict.nav.ctaNav}
           </a>
           <a
             href={`/${altLocale}`}
-            className="block mt-3 text-center text-sm text-[#78716C] hover:text-[#D97706] transition-colors"
+            className="block mt-3 text-center text-sm text-[#4b6a55] hover:text-[#16a34a] transition-colors"
           >
             {locale === "es" ? "Switch to English" : "Cambiar a español"}
           </a>

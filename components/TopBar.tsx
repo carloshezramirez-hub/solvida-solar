@@ -10,7 +10,7 @@ export default function TopBar({ dict, locale }: Props) {
   const altLocale = locale === "es" ? "en" : "es";
 
   return (
-    <div className="w-full bg-[#1C1917] text-[#A8A29E] text-xs py-2 px-4">
+    <div className="w-full bg-[#052e16] text-[#86efac]/70 text-xs py-2 px-4">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
         <span className="hidden sm:inline">{dict.topbar.message}</span>
         <div className="flex items-center gap-4 ml-auto">
@@ -18,7 +18,7 @@ export default function TopBar({ dict, locale }: Props) {
             <a
               href={`tel:${phone}`}
               onClick={() => trackEvent("PhoneClicked", { locale })}
-              className="flex items-center gap-1.5 hover:text-[#D97706] transition-colors"
+              className="flex items-center gap-1.5 hover:text-[#86efac] transition-colors"
               aria-label={dict.topbar.phone}
             >
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -45,7 +45,7 @@ export default function TopBar({ dict, locale }: Props) {
           )}
           <a
             href={`/${altLocale}`}
-            className="border border-[#44403C] hover:border-[#D97706] hover:text-[#D97706] px-2 py-0.5 rounded text-xs transition-colors font-medium"
+            className="border border-white/20 hover:border-[#86efac] hover:text-[#86efac] px-2 py-0.5 rounded text-xs transition-colors font-medium"
             aria-label={dict.nav.langLabel}
           >
             {dict.nav.langSwitch}
@@ -58,11 +58,9 @@ export default function TopBar({ dict, locale }: Props) {
 
 function trackEvent(event: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
-  // GA4
   if ((window as unknown as Record<string, unknown>).gtag) {
     (window as unknown as Record<string, (...args: unknown[]) => void>).gtag("event", event, params);
   }
-  // Meta Pixel
   if ((window as unknown as Record<string, unknown>).fbq) {
     (window as unknown as Record<string, (...args: unknown[]) => void>).fbq("trackCustom", event, params);
   }

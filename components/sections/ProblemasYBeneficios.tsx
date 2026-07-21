@@ -20,7 +20,7 @@ export default function ProblemasYBeneficios({ dict }: Props) {
   return (
     <>
       {/* Problems */}
-      <section id="beneficios" className="py-20 sm:py-28 bg-[#F5F0E8]">
+      <section id="beneficios" className="py-20 sm:py-28 bg-[#f0fdf4]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -28,10 +28,10 @@ export default function ProblemasYBeneficios({ dict }: Props) {
             viewport={{ once: true }}
             className="max-w-2xl mb-14"
           >
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#052e16] mb-4">
               {problems.heading}
             </h2>
-            <p className="text-[#78716C] text-lg leading-relaxed">
+            <p className="text-[#4b6a55] text-lg leading-relaxed">
               {problems.subheading}
             </p>
           </motion.div>
@@ -41,11 +41,11 @@ export default function ProblemasYBeneficios({ dict }: Props) {
               <motion.div
                 key={i}
                 {...fadeUp(i)}
-                className="bg-[#FEFBF6] border border-[#E7E1D5] rounded-2xl p-6 hover:border-[#D97706]/40 transition-colors"
+                className="bg-white border border-[#d1fae5] rounded-2xl p-6 hover:border-[#86efac] hover:shadow-sm transition-all"
               >
                 <div className="text-2xl mb-3" aria-hidden="true">{problemIcons[i]}</div>
-                <h3 className="font-semibold text-[#1C1917] mb-2">{item.title}</h3>
-                <p className="text-[#78716C] text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="font-semibold text-[#052e16] mb-2">{item.title}</h3>
+                <p className="text-[#4b6a55] text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -53,7 +53,7 @@ export default function ProblemasYBeneficios({ dict }: Props) {
       </section>
 
       {/* Benefits */}
-      <section className="py-20 sm:py-28 bg-[#FEFBF6]">
+      <section className="py-20 sm:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ export default function ProblemasYBeneficios({ dict }: Props) {
             viewport={{ once: true }}
             className="max-w-2xl mb-14"
           >
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#052e16] mb-4">
               {problems.benefitsHeading}
             </h2>
           </motion.div>
@@ -73,12 +73,12 @@ export default function ProblemasYBeneficios({ dict }: Props) {
                 {...fadeUp(i)}
                 className="flex gap-4"
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#FEF3C7] flex items-center justify-center text-lg" aria-hidden="true">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#dcfce7] flex items-center justify-center text-lg" aria-hidden="true">
                   {benefitIcons[i]}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#1C1917] mb-1.5">{item.title}</h3>
-                  <p className="text-[#78716C] text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="font-semibold text-[#052e16] mb-1.5">{item.title}</h3>
+                  <p className="text-[#4b6a55] text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

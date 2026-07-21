@@ -1,47 +1,59 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 :root {
-  /* Warm SMA palette */
-  --cream: #FEFBF6;
-  --cream-section: #F5F0E8;
-  --cream-border: #E7E1D5;
-  --carbon: #1C1917;
-  --carbon-secondary: #292524;
-  --stone: #44403C;
-  --muted: #78716C;
-  --subtle: #A8A29E;
-  --amber: #D97706;
-  --amber-hover: #B45309;
-  --amber-light: #FEF3C7;
-  --amber-bg: #FFFBEB;
-  --green: #15803D;
-  --green-light: #F0FDF4;
-  --green-border: #BBF7D0;
+  /* ── Green palette ─────────────────────────────── */
+  --g50:  #f0fdf4;
+  --g100: #dcfce7;
+  --g200: #bbf7d0;
+  --g300: #86efac;
+  --g600: #16a34a;
+  --g700: #15803d;
+  --g800: #166534;
+  --g900: #14532d;
+  --g950: #052e16;
+
+  /* ── Neutrals ────────────────────────────────────── */
+  --white:      #ffffff;
+  --near-white: #fafffc;
+  --slate-50:   #f8fafc;
+
+  /* ── Text ────────────────────────────────────────── */
+  --text-dark:   #052e16;
+  --text-mid:    #166534;
+  --text-muted:  #4b6a55;
+  --text-subtle: #86a990;
+
+  /* ── Amber accent (sun / energy – use sparingly) ── */
+  --amber:       #d97706;
+  --amber-hover: #b45309;
+  --amber-light: #fef3c7;
+
+  /* ── Borders ─────────────────────────────────────── */
+  --border-light: #d1fae5;
+  --border-mid:   #a7f3d0;
 }
 
 @theme inline {
-  --color-cream: var(--cream);
-  --color-cream-section: var(--cream-section);
-  --color-carbon: var(--carbon);
-  --color-stone: var(--stone);
-  --color-muted: var(--muted);
-  --color-amber: var(--amber);
-  --color-amber-light: var(--amber-light);
-  --color-green: var(--green);
+  --color-g600:        var(--g600);
+  --color-g700:        var(--g700);
+  --color-g950:        var(--g950);
+  --color-text-dark:   var(--text-dark);
+  --color-text-muted:  var(--text-muted);
   --font-jakarta: "Plus Jakarta Sans", sans-serif;
-  --font-inter: "Inter", sans-serif;
+  --font-inter:   "Inter", sans-serif;
 }
 
+/* ── Base ─────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  background: var(--cream);
-  color: var(--carbon);
+  background: #ffffff;
+  color: var(--text-dark);
 }
 
 body {
-  background: var(--cream);
-  color: var(--carbon);
+  background: #ffffff;
+  color: var(--text-dark);
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -51,7 +63,7 @@ h1, h2, h3, h4, h5 {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-/* Reduced motion */
+/* ── Reduced motion ───────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -61,34 +73,23 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-/* Focus visible */
+/* ── Focus ────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--amber);
+  outline: 2px solid var(--g600);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Range input */
-input[type="range"] {
-  accent-color: var(--amber);
-}
+/* ── Inputs ───────────────────────────────────────── */
+input[type="range"] { accent-color: var(--g600); }
 
-/* Custom scrollbar (subtle) */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--cream-section);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--cream-border);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--subtle);
-}
+/* ── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--g50); }
+::-webkit-scrollbar-thumb { background: var(--g200); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--g300); }
 
-/* WhatsApp float button */
+/* ── WhatsApp float ───────────────────────────────── */
 .wa-float {
   position: fixed;
   bottom: 1.5rem;
@@ -102,13 +103,36 @@ input[type="range"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 24px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.4);
   transition: transform 0.2s, box-shadow 0.2s;
+  animation: wa-pulse 2.5s ease-in-out infinite;
 }
 .wa-float:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 32px rgba(37, 211, 102, 0.45);
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+  animation: none;
+}
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.3); }
+  50%       { box-shadow: 0 4px 24px rgba(37,211,102,0.4), 0 0 0 12px rgba(37,211,102,0); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .wa-float { animation: none; }
   .wa-float:hover { transform: none; }
+}
+
+/* ── Gradient text helper ─────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #16a34a 0%, #86efac 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ───────────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
 }

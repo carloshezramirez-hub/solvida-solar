@@ -10,9 +10,9 @@ const BUSINESS = process.env.NEXT_PUBLIC_LEGAL_BUSINESS_NAME || "[RAZÓN SOCIAL 
 
 export default function TerminosDeUso() {
   return (
-    <main className="min-h-screen bg-[#FEFBF6] py-16 px-4">
+    <main className="min-h-screen bg-white py-16 px-4">
       <div className="max-w-3xl mx-auto">
-        <Link href="/es" className="text-[#D97706] text-sm hover:underline mb-8 block">← Inicio</Link>
+        <Link href="/es" className="text-[#16a34a] text-sm hover:underline mb-8 block">← Inicio</Link>
 
         <h1 className="text-3xl font-extrabold text-[#1C1917] mb-2">Términos de Uso</h1>
         <p className="text-[#78716C] text-sm mb-8">Última actualización: julio 2026</p>
@@ -39,7 +39,7 @@ export default function TerminosDeUso() {
             <p>Las estimaciones presentadas en este sitio son orientativas y no constituyen una cotización formal.
             El diseño final de cualquier sistema solar depende de la evaluación técnica del sitio, el análisis del recibo de CFE
             y las condiciones reales de la propiedad. Consulta nuestra{" "}
-            <Link href="/es/estimaciones-solares" className="text-[#D97706] hover:underline">
+            <Link href="/es/estimaciones-solares" className="text-[#16a34a] hover:underline">
               Política de Estimaciones Solares
             </Link>{" "}
             para más información.</p>

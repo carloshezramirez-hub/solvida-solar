@@ -17,10 +17,10 @@ function trackEvent(name: string, params?: Record<string, unknown>) {
 }
 
 const inputClass =
-  "w-full bg-white border border-[#E7E1D5] focus:border-[#D97706] text-[#1C1917] placeholder-[#A8A29E] rounded-xl px-4 py-3 outline-none transition-colors text-sm";
-const labelClass = "block text-[#44403C] text-sm font-semibold mb-1.5";
+  "w-full bg-white border border-[#d1fae5] focus:border-[#16a34a] text-[#052e16] placeholder-[#86a990] rounded-xl px-4 py-3 outline-none transition-colors text-sm";
+const labelClass = "block text-[#166534] text-sm font-semibold mb-1.5";
 const selectClass =
-  "w-full bg-white border border-[#E7E1D5] focus:border-[#D97706] text-[#1C1917] rounded-xl px-4 py-3 outline-none transition-colors text-sm";
+  "w-full bg-white border border-[#d1fae5] focus:border-[#16a34a] text-[#052e16] rounded-xl px-4 py-3 outline-none transition-colors text-sm";
 
 export default function Formulario({ dict, locale }: Props) {
   const f = dict.form;
@@ -95,17 +95,17 @@ export default function Formulario({ dict, locale }: Props) {
 
   if (sent) {
     return (
-      <section id="formulario" className="py-20 sm:py-28 bg-[#F5F0E8]">
+      <section id="formulario" className="py-20 sm:py-28 bg-[#f0fdf4]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-            <div className="w-16 h-16 bg-[#FEF3C7] rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-[#D97706]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <div className="w-16 h-16 bg-[#dcfce7] rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h2 className="text-3xl font-extrabold text-[#1C1917] mb-4">{f.success.heading}</h2>
-            <p className="text-[#78716C] text-lg mb-2">{f.success.message}</p>
-            <p className="text-[#A8A29E] text-sm mb-8">{f.success.note}</p>
+            <h2 className="text-3xl font-extrabold text-[#052e16] mb-4">{f.success.heading}</h2>
+            <p className="text-[#4b6a55] text-lg mb-2">{f.success.message}</p>
+            <p className="text-[#86a990] text-sm mb-8">{f.success.note}</p>
             {wa && (
               <a
                 href={`https://wa.me/${wa}?text=${msg}`}
@@ -126,7 +126,7 @@ export default function Formulario({ dict, locale }: Props) {
   }
 
   return (
-    <section id="formulario" className="py-20 sm:py-28 bg-[#F5F0E8]">
+    <section id="formulario" className="py-20 sm:py-28 bg-[#f0fdf4]">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -134,10 +134,10 @@ export default function Formulario({ dict, locale }: Props) {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#052e16] mb-4">
             {f.heading}
           </h2>
-          <p className="text-[#78716C] text-lg leading-relaxed">{f.subheading}</p>
+          <p className="text-[#4b6a55] text-lg leading-relaxed">{f.subheading}</p>
         </motion.div>
 
         <motion.form
@@ -147,7 +147,7 @@ export default function Formulario({ dict, locale }: Props) {
           viewport={{ once: true }}
           onSubmit={handleSubmit}
           onFocus={onStart}
-          className="bg-[#FEFBF6] border border-[#E7E1D5] rounded-3xl p-7 sm:p-10 space-y-5 shadow-sm"
+          className="bg-white border border-[#d1fae5] rounded-3xl p-7 sm:p-10 space-y-5 shadow-sm"
         >
           {/* Honeypot */}
           <input type="text" name="website" className="sr-only" aria-hidden="true" tabIndex={-1} />
@@ -221,8 +221,8 @@ export default function Formulario({ dict, locale }: Props) {
               <legend className={labelClass}>{f.pool}</legend>
               <div className="flex gap-4 mt-1">
                 {f.yesNo.map((o) => (
-                  <label key={o.value} className="flex items-center gap-2 cursor-pointer text-sm text-[#44403C]">
-                    <input type="radio" name="pool" value={o.value} defaultChecked={o.value === "no"} className="accent-[#D97706]" />
+                  <label key={o.value} className="flex items-center gap-2 cursor-pointer text-sm text-[#166534]">
+                    <input type="radio" name="pool" value={o.value} defaultChecked={o.value === "no"} className="accent-[#16a34a]" />
                     {o.label}
                   </label>
                 ))}
@@ -232,8 +232,8 @@ export default function Formulario({ dict, locale }: Props) {
               <legend className={labelClass}>{f.ac}</legend>
               <div className="flex gap-4 mt-1">
                 {f.yesNo.map((o) => (
-                  <label key={o.value} className="flex items-center gap-2 cursor-pointer text-sm text-[#44403C]">
-                    <input type="radio" name="ac" value={o.value} defaultChecked={o.value === "no"} className="accent-[#D97706]" />
+                  <label key={o.value} className="flex items-center gap-2 cursor-pointer text-sm text-[#166534]">
+                    <input type="radio" name="ac" value={o.value} defaultChecked={o.value === "no"} className="accent-[#16a34a]" />
                     {o.label}
                   </label>
                 ))}
@@ -266,7 +266,7 @@ export default function Formulario({ dict, locale }: Props) {
           {/* CFE bill upload */}
           <div>
             <label className={labelClass}>{f.uploadBill}</label>
-            <div className="border-2 border-dashed border-[#E7E1D5] rounded-xl p-5 text-center hover:border-[#D97706]/50 transition-colors">
+            <div className="border-2 border-dashed border-[#d1fae5] rounded-xl p-5 text-center hover:border-[#86efac] transition-colors">
               <input
                 type="file"
                 name="cfeBillUpload"
@@ -276,14 +276,14 @@ export default function Formulario({ dict, locale }: Props) {
                 id="f-file"
               />
               <label htmlFor="f-file" className="cursor-pointer">
-                <svg className="w-8 h-8 text-[#A8A29E] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <svg className="w-8 h-8 text-[#86a990] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
-                <span className="block text-[#D97706] text-sm font-semibold mb-1">{f.uploadBillButton}</span>
+                <span className="block text-[#16a34a] text-sm font-semibold mb-1">{f.uploadBillButton}</span>
                 {file ? (
-                  <span className="text-[#44403C] text-xs">{f.uploadBillSelected}: {file.name}</span>
+                  <span className="text-[#166534] text-xs">{f.uploadBillSelected}: {file.name}</span>
                 ) : (
-                  <span className="text-[#A8A29E] text-xs">{f.uploadBillHelp}</span>
+                  <span className="text-[#86a990] text-xs">{f.uploadBillHelp}</span>
                 )}
               </label>
             </div>
@@ -297,11 +297,11 @@ export default function Formulario({ dict, locale }: Props) {
                 type="checkbox"
                 checked={privacyChecked}
                 onChange={(e) => { setPrivacyChecked(e.target.checked); setPrivacyError(""); }}
-                className="mt-0.5 accent-[#D97706] flex-shrink-0"
+                className="mt-0.5 accent-[#16a34a] flex-shrink-0"
               />
-              <span className="text-[#78716C] text-xs leading-relaxed">
+              <span className="text-[#4b6a55] text-xs leading-relaxed">
                 {f.privacyConsent}{" "}
-                <Link href={privacyLink} className="text-[#D97706] hover:underline">
+                <Link href={privacyLink} className="text-[#16a34a] hover:underline">
                   {f.privacyLink}
                 </Link>
                 .
@@ -319,21 +319,20 @@ export default function Formulario({ dict, locale }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#D97706] hover:bg-[#B45309] disabled:opacity-60 text-white font-semibold py-4 rounded-2xl text-base transition-colors shadow-sm"
+            className="w-full bg-[#16a34a] hover:bg-[#15803d] disabled:opacity-60 text-white font-semibold py-4 rounded-2xl text-base transition-colors shadow-md shadow-green-200"
           >
             {loading ? (locale === "en" ? "Sending…" : "Enviando…") : f.submit}
           </button>
 
-          {/* WhatsApp alternative */}
           {wa && (
-            <p className="text-center text-[#A8A29E] text-xs">
+            <p className="text-center text-[#86a990] text-xs">
               {locale === "en" ? "Or send us a message on " : "O escríbenos directamente por "}
               <a
                 href={`https://wa.me/${wa}?text=${msg}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("WhatsAppClicked", { locale, source: "form-footer" })}
-                className="text-[#D97706] hover:underline font-semibold"
+                className="text-[#16a34a] hover:underline font-semibold"
               >
                 WhatsApp
               </a>

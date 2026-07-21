@@ -12,9 +12,9 @@ const PHONE = process.env.NEXT_PUBLIC_PHONE_NUMBER || "[PHONE — TO BE CONFIGUR
 
 export default function PrivacyPolicy() {
   return (
-    <main className="min-h-screen bg-[#FEFBF6] py-16 px-4">
+    <main className="min-h-screen bg-white py-16 px-4">
       <div className="max-w-3xl mx-auto">
-        <Link href="/en" className="text-[#D97706] text-sm hover:underline mb-8 block">← Home</Link>
+        <Link href="/en" className="text-[#16a34a] text-sm hover:underline mb-8 block">← Home</Link>
 
         <h1 className="text-3xl font-extrabold text-[#1C1917] mb-2">Privacy Policy</h1>
         <p className="text-[#78716C] text-sm mb-8">Last updated: July 2026</p>

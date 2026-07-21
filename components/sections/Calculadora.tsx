@@ -19,7 +19,7 @@ function trackEvent(name: string, params?: Record<string, unknown>) {
 
 function estimateSystem(billAmount: number, freq: string, pool: string, ac: string): { kw: string; gen: string } {
   const monthly = freq === "bimonthly" ? billAmount / 2 : billAmount;
-  let base = monthly / 400; // rough kWh / pesos ratio
+  let base = monthly / 400;
   if (pool === "yes") base += 1.5;
   if (ac === "yes") base += 1;
   const kw = Math.max(2, Math.min(20, base));
@@ -91,8 +91,11 @@ export default function Calculadora({ dict, locale }: Props) {
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
   const msg = encodeURIComponent(dict.whatsapp.prefilledMessage);
 
+  const inputCls = "w-full bg-[#052e16] border border-[#1a5c38] focus:border-[#16a34a] text-white placeholder-[#4b6a55] rounded-xl px-4 py-3 outline-none transition-colors";
+  const selectCls = inputCls;
+
   return (
-    <section id="calculadora" className="py-20 sm:py-28 bg-[#1C1917]">
+    <section id="calculadora" className="py-20 sm:py-28 bg-[#052e16]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -103,7 +106,7 @@ export default function Calculadora({ dict, locale }: Props) {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
             {c.heading}
           </h2>
-          <p className="text-[#A8A29E] text-lg max-w-xl mx-auto">{c.subheading}</p>
+          <p className="text-[#86efac]/70 text-lg max-w-xl mx-auto">{c.subheading}</p>
         </motion.div>
 
         <AnimatePresence mode="wait">
@@ -114,12 +117,12 @@ export default function Calculadora({ dict, locale }: Props) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onSubmit={handleCalculate}
-              className="bg-[#292524] border border-[#44403C] rounded-3xl p-8 grid sm:grid-cols-2 gap-6"
+              className="bg-[#0a3020] border border-[#1a5c38] rounded-3xl p-8 grid sm:grid-cols-2 gap-6"
               onClick={() => trackEvent("CalculatorStarted", { locale })}
             >
               {/* Bill amount */}
               <div className="sm:col-span-2">
-                <label className="block text-[#E7E1D5] text-sm font-semibold mb-2">
+                <label className="block text-white/90 text-sm font-semibold mb-2">
                   {c.fields.billAmount} *
                 </label>
                 <input
@@ -129,19 +132,19 @@ export default function Calculadora({ dict, locale }: Props) {
                   placeholder={c.fields.billAmountPlaceholder}
                   value={billAmount}
                   onChange={(e) => setBillAmount(e.target.value)}
-                  className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white placeholder-[#78716C] rounded-xl px-4 py-3 outline-none transition-colors"
+                  className={inputCls}
                 />
               </div>
 
               {/* Frequency */}
               <div>
-                <label className="block text-[#E7E1D5] text-sm font-semibold mb-2">
+                <label className="block text-white/90 text-sm font-semibold mb-2">
                   {c.fields.billFrequency}
                 </label>
                 <select
                   value={billFreq}
                   onChange={(e) => setBillFreq(e.target.value)}
-                  className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white rounded-xl px-4 py-3 outline-none transition-colors"
+                  className={selectCls}
                 >
                   {c.fields.billFrequencyOptions.map((o) => (
                     <option key={o.value} value={o.value}>{o.label}</option>
@@ -151,13 +154,13 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* Home type */}
               <div>
-                <label className="block text-[#E7E1D5] text-sm font-semibold mb-2">
+                <label className="block text-white/90 text-sm font-semibold mb-2">
                   {c.fields.homeType}
                 </label>
                 <select
                   value={homeType}
                   onChange={(e) => setHomeType(e.target.value)}
-                  className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white rounded-xl px-4 py-3 outline-none transition-colors"
+                  className={selectCls}
                 >
                   {c.fields.homeTypeOptions.map((o) => (
                     <option key={o.value} value={o.value}>{o.label}</option>
@@ -167,13 +170,13 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* Ownership */}
               <div>
-                <label className="block text-[#E7E1D5] text-sm font-semibold mb-2">
+                <label className="block text-white/90 text-sm font-semibold mb-2">
                   {c.fields.ownership}
                 </label>
                 <select
                   value={ownership}
                   onChange={(e) => setOwnership(e.target.value)}
-                  className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white rounded-xl px-4 py-3 outline-none transition-colors"
+                  className={selectCls}
                 >
                   {c.fields.ownershipOptions.map((o) => (
                     <option key={o.value} value={o.value}>{o.label}</option>
@@ -183,7 +186,7 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* Pool */}
               <div>
-                <p className="text-[#E7E1D5] text-sm font-semibold mb-3">{c.fields.pool}</p>
+                <p className="text-white/90 text-sm font-semibold mb-3">{c.fields.pool}</p>
                 <div className="flex gap-4">
                   {c.fields.yesNo.map((o) => (
                     <label key={o.value} className="flex items-center gap-2 cursor-pointer">
@@ -193,9 +196,9 @@ export default function Calculadora({ dict, locale }: Props) {
                         value={o.value}
                         checked={pool === o.value}
                         onChange={() => setPool(o.value)}
-                        className="accent-[#D97706]"
+                        className="accent-[#16a34a]"
                       />
-                      <span className="text-[#A8A29E] text-sm">{o.label}</span>
+                      <span className="text-[#86efac]/70 text-sm">{o.label}</span>
                     </label>
                   ))}
                 </div>
@@ -203,7 +206,7 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* AC */}
               <div>
-                <p className="text-[#E7E1D5] text-sm font-semibold mb-3">{c.fields.ac}</p>
+                <p className="text-white/90 text-sm font-semibold mb-3">{c.fields.ac}</p>
                 <div className="flex gap-4">
                   {c.fields.yesNo.map((o) => (
                     <label key={o.value} className="flex items-center gap-2 cursor-pointer">
@@ -213,9 +216,9 @@ export default function Calculadora({ dict, locale }: Props) {
                         value={o.value}
                         checked={ac === o.value}
                         onChange={() => setAc(o.value)}
-                        className="accent-[#D97706]"
+                        className="accent-[#16a34a]"
                       />
-                      <span className="text-[#A8A29E] text-sm">{o.label}</span>
+                      <span className="text-[#86efac]/70 text-sm">{o.label}</span>
                     </label>
                   ))}
                 </div>
@@ -223,13 +226,13 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* Roof type */}
               <div>
-                <label className="block text-[#E7E1D5] text-sm font-semibold mb-2">
+                <label className="block text-white/90 text-sm font-semibold mb-2">
                   {c.fields.roofType}
                 </label>
                 <select
                   value={roofType}
                   onChange={(e) => setRoofType(e.target.value)}
-                  className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white rounded-xl px-4 py-3 outline-none transition-colors"
+                  className={selectCls}
                 >
                   {c.fields.roofTypeOptions.map((o) => (
                     <option key={o.value} value={o.value}>{o.label}</option>
@@ -239,7 +242,7 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* Batteries */}
               <div>
-                <p className="text-[#E7E1D5] text-sm font-semibold mb-3">{c.fields.batteries}</p>
+                <p className="text-white/90 text-sm font-semibold mb-3">{c.fields.batteries}</p>
                 <div className="flex gap-4 flex-wrap">
                   {c.fields.yesNo.concat([{ value: "maybe", label: locale === "en" ? "Maybe" : "Quizás" }]).map((o) => (
                     <label key={o.value} className="flex items-center gap-2 cursor-pointer">
@@ -249,9 +252,9 @@ export default function Calculadora({ dict, locale }: Props) {
                         value={o.value}
                         checked={batteries === o.value}
                         onChange={() => setBatteries(o.value)}
-                        className="accent-[#D97706]"
+                        className="accent-[#16a34a]"
                       />
-                      <span className="text-[#A8A29E] text-sm">{o.label}</span>
+                      <span className="text-[#86efac]/70 text-sm">{o.label}</span>
                     </label>
                   ))}
                 </div>
@@ -259,7 +262,7 @@ export default function Calculadora({ dict, locale }: Props) {
 
               {/* Postal code */}
               <div>
-                <label className="block text-[#E7E1D5] text-sm font-semibold mb-2">
+                <label className="block text-white/90 text-sm font-semibold mb-2">
                   {c.fields.postalCode}
                 </label>
                 <input
@@ -267,14 +270,14 @@ export default function Calculadora({ dict, locale }: Props) {
                   placeholder={c.fields.postalCodePlaceholder}
                   value={postalCode}
                   onChange={(e) => setPostalCode(e.target.value)}
-                  className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white placeholder-[#78716C] rounded-xl px-4 py-3 outline-none transition-colors"
+                  className={inputCls}
                 />
               </div>
 
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="w-full bg-[#D97706] hover:bg-[#B45309] text-white font-semibold py-4 rounded-2xl text-base transition-colors"
+                  className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold py-4 rounded-2xl text-base transition-colors shadow-lg shadow-green-900/40"
                 >
                   {c.calculate}
                 </button>
@@ -288,31 +291,31 @@ export default function Calculadora({ dict, locale }: Props) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="bg-[#292524] border border-[#44403C] rounded-3xl p-8"
+              className="bg-[#0a3020] border border-[#1a5c38] rounded-3xl p-8"
             >
               <h3 className="text-xl font-bold text-white mb-6">{c.result.heading}</h3>
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
-                <div className="bg-[#1C1917] rounded-2xl p-5">
-                  <p className="text-[#78716C] text-xs font-semibold mb-1 uppercase tracking-wide">{c.result.systemRange}</p>
-                  <p className="text-2xl font-extrabold text-[#D97706]">{estimate.kw}</p>
+                <div className="bg-[#052e16] rounded-2xl p-5">
+                  <p className="text-[#86efac]/60 text-xs font-semibold mb-1 uppercase tracking-wide">{c.result.systemRange}</p>
+                  <p className="text-2xl font-extrabold text-[#86efac]">{estimate.kw}</p>
                 </div>
-                <div className="bg-[#1C1917] rounded-2xl p-5">
-                  <p className="text-[#78716C] text-xs font-semibold mb-1 uppercase tracking-wide">{c.result.generationRange}</p>
+                <div className="bg-[#052e16] rounded-2xl p-5">
+                  <p className="text-[#86efac]/60 text-xs font-semibold mb-1 uppercase tracking-wide">{c.result.generationRange}</p>
                   <p className="text-2xl font-extrabold text-white">{estimate.gen}</p>
                 </div>
               </div>
 
-              <div className="bg-[#FEF3C7]/10 border border-[#D97706]/20 rounded-xl p-4 mb-6">
-                <p className="text-[#A8A29E] text-sm leading-relaxed">{c.result.disclaimer}</p>
+              <div className="bg-[#16a34a]/10 border border-[#16a34a]/30 rounded-xl p-4 mb-6">
+                <p className="text-[#86efac]/80 text-sm leading-relaxed">{c.result.disclaimer}</p>
               </div>
 
-              <p className="text-[#A8A29E] text-sm mb-2 font-semibold">{c.result.nextStep}</p>
-              <p className="text-[#78716C] text-sm mb-6">{c.result.nextStepText}</p>
+              <p className="text-white/90 text-sm mb-2 font-semibold">{c.result.nextStep}</p>
+              <p className="text-[#86efac]/70 text-sm mb-6">{c.result.nextStepText}</p>
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => setStage("capture")}
-                  className="flex-1 bg-[#D97706] hover:bg-[#B45309] text-white font-semibold py-3.5 rounded-2xl transition-colors text-sm"
+                  className="flex-1 bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold py-3.5 rounded-2xl transition-colors text-sm shadow-lg shadow-green-900/40"
                 >
                   {c.result.ctaPrimary}
                 </button>
@@ -321,7 +324,7 @@ export default function Calculadora({ dict, locale }: Props) {
                     href={`https://wa.me/${wa}?text=${msg}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 border border-[#44403C] hover:border-[#D97706] text-[#E7E1D5] hover:text-[#D97706] font-semibold py-3.5 rounded-2xl transition-colors text-sm text-center"
+                    className="flex-1 border border-[#1a5c38] hover:border-[#86efac] text-[#86efac] hover:text-white font-semibold py-3.5 rounded-2xl transition-colors text-sm text-center"
                   >
                     {c.result.ctaWhatsapp}
                   </a>
@@ -329,7 +332,7 @@ export default function Calculadora({ dict, locale }: Props) {
               </div>
               <button
                 onClick={() => setStage("form")}
-                className="mt-4 text-[#78716C] hover:text-[#A8A29E] text-sm underline"
+                className="mt-4 text-[#86efac]/50 hover:text-[#86efac] text-sm underline"
               >
                 {locale === "en" ? "← Recalculate" : "← Recalcular"}
               </button>
@@ -342,17 +345,17 @@ export default function Calculadora({ dict, locale }: Props) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="bg-[#292524] border border-[#44403C] rounded-3xl p-8"
+              className="bg-[#0a3020] border border-[#1a5c38] rounded-3xl p-8"
             >
               {capSent ? (
                 <div className="text-center py-8">
-                  <div className="w-14 h-14 bg-[#D97706]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-7 h-7 text-[#D97706]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <div className="w-14 h-14 bg-[#16a34a]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-7 h-7 text-[#86efac]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">{dict.form.success.heading}</h3>
-                  <p className="text-[#A8A29E] mb-6">{dict.form.success.message}</p>
+                  <p className="text-[#86efac]/70 mb-6">{dict.form.success.message}</p>
                   {wa && (
                     <a
                       href={`https://wa.me/${wa}?text=${msg}`}
@@ -368,38 +371,38 @@ export default function Calculadora({ dict, locale }: Props) {
                 <form onSubmit={handleCapture} className="space-y-4">
                   <h3 className="text-lg font-bold text-white mb-4">{c.captureHeading}</h3>
                   <div>
-                    <label className="block text-[#E7E1D5] text-sm font-semibold mb-1.5">{c.name} *</label>
+                    <label className="block text-white/90 text-sm font-semibold mb-1.5">{c.name} *</label>
                     <input required value={capName} onChange={(e) => setCapName(e.target.value)}
                       placeholder={c.namePlaceholder}
-                      className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white placeholder-[#78716C] rounded-xl px-4 py-3 outline-none transition-colors" />
+                      className={inputCls} />
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[#E7E1D5] text-sm font-semibold mb-1.5">{c.whatsapp} *</label>
+                      <label className="block text-white/90 text-sm font-semibold mb-1.5">{c.whatsapp} *</label>
                       <input required value={capWa} onChange={(e) => setCapWa(e.target.value)}
                         placeholder={c.whatsappPlaceholder}
-                        className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white placeholder-[#78716C] rounded-xl px-4 py-3 outline-none transition-colors" />
+                        className={inputCls} />
                     </div>
                     <div>
-                      <label className="block text-[#E7E1D5] text-sm font-semibold mb-1.5">{c.email}</label>
+                      <label className="block text-white/90 text-sm font-semibold mb-1.5">{c.email}</label>
                       <input type="email" value={capEmail} onChange={(e) => setCapEmail(e.target.value)}
                         placeholder={c.emailPlaceholder}
-                        className="w-full bg-[#1C1917] border border-[#44403C] focus:border-[#D97706] text-white placeholder-[#78716C] rounded-xl px-4 py-3 outline-none transition-colors" />
+                        className={inputCls} />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[#E7E1D5] text-sm font-semibold mb-1.5">{c.uploadBill}</label>
+                    <label className="block text-white/90 text-sm font-semibold mb-1.5">{c.uploadBill}</label>
                     <input
                       type="file"
                       accept=".pdf,.jpg,.jpeg,.png,.heic"
                       onChange={(e) => setCapFile(e.target.files?.[0] || null)}
-                      className="w-full text-[#A8A29E] text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[#D97706] file:text-white file:cursor-pointer file:font-semibold hover:file:bg-[#B45309]"
+                      className="w-full text-[#86efac]/70 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[#16a34a] file:text-white file:cursor-pointer file:font-semibold hover:file:bg-[#15803d]"
                     />
-                    <p className="text-[#78716C] text-xs mt-1.5">{c.uploadBillHelp}</p>
+                    <p className="text-[#4b6a55] text-xs mt-1.5">{c.uploadBillHelp}</p>
                   </div>
-                  <p className="text-[#78716C] text-xs">{c.privacy}</p>
+                  <p className="text-[#4b6a55] text-xs">{c.privacy}</p>
                   <button type="submit" disabled={capLoading}
-                    className="w-full bg-[#D97706] hover:bg-[#B45309] disabled:opacity-60 text-white font-semibold py-4 rounded-2xl transition-colors">
+                    className="w-full bg-[#16a34a] hover:bg-[#15803d] disabled:opacity-60 text-white font-semibold py-4 rounded-2xl transition-colors shadow-lg">
                     {capLoading ? "..." : c.submit}
                   </button>
                 </form>

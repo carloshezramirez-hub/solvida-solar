@@ -31,7 +31,7 @@ export default function PorQueSolvida({ dict }: Props) {
   const { whySolvida } = dict;
 
   return (
-    <section className="py-20 sm:py-28 bg-[#F5F0E8]">
+    <section className="py-20 sm:py-28 bg-[#f0fdf4]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,10 +39,10 @@ export default function PorQueSolvida({ dict }: Props) {
           viewport={{ once: true }}
           className="max-w-2xl mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#052e16] mb-4">
             {whySolvida.heading}
           </h2>
-          <p className="text-[#78716C] text-lg">{whySolvida.subheading}</p>
+          <p className="text-[#4b6a55] text-lg">{whySolvida.subheading}</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -53,13 +53,13 @@ export default function PorQueSolvida({ dict }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="bg-[#FEFBF6] border border-[#E7E1D5] rounded-2xl p-6 hover:border-[#D97706]/40 transition-colors"
+              className="bg-white border border-[#d1fae5] rounded-2xl p-6 hover:border-[#86efac] hover:shadow-sm transition-all"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#FEF3C7] flex items-center justify-center text-[#D97706] mb-4">
+              <div className="w-10 h-10 rounded-xl bg-[#dcfce7] flex items-center justify-center text-[#16a34a] mb-4">
                 {icons[i]}
               </div>
-              <h3 className="font-semibold text-[#1C1917] mb-2">{item.title}</h3>
-              <p className="text-[#78716C] text-sm leading-relaxed">{item.desc}</p>
+              <h3 className="font-semibold text-[#052e16] mb-2">{item.title}</h3>
+              <p className="text-[#4b6a55] text-sm leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>
