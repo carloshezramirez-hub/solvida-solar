@@ -21,25 +21,25 @@ export default async function GraciasPage({ params }: Props) {
   const msg = encodeURIComponent(dict.whatsapp.prefilledMessage);
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-20 bg-[#FEFBF6]">
+    <main className="min-h-screen flex items-center justify-center px-4 py-20 bg-[#f0fdf4]">
       <div className="max-w-lg w-full text-center">
-        <div className="w-20 h-20 bg-[#FEF3C7] rounded-full flex items-center justify-center mx-auto mb-8">
-          <svg className="w-10 h-10 text-[#D97706]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <div className="w-20 h-20 bg-[#dcfce7] rounded-full flex items-center justify-center mx-auto mb-8">
+          <svg className="w-10 h-10 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] mb-4">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#052e16] mb-4">
           {t.heading}
         </h1>
-        <p className="text-[#78716C] text-lg mb-3">{t.message}</p>
+        <p className="text-[#4b6a55] text-lg mb-3">{t.message}</p>
 
-        <div className="bg-[#F5F0E8] border border-[#E7E1D5] rounded-2xl p-5 mb-8 text-left">
-          <p className="text-[#44403C] font-semibold text-sm mb-1">{t.nextStep}</p>
-          <p className="text-[#78716C] text-sm leading-relaxed">{t.nextStepText}</p>
+        <div className="bg-[#f0fdf4] border border-[#d1fae5] rounded-2xl p-5 mb-8 text-left">
+          <p className="text-[#166534] font-semibold text-sm mb-1">{t.nextStep}</p>
+          <p className="text-[#4b6a55] text-sm leading-relaxed">{t.nextStepText}</p>
         </div>
 
-        <p className="text-[#A8A29E] text-sm mb-6">{t.note}</p>
+        <p className="text-[#86a990] text-sm mb-6">{t.note}</p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           {wa && (
@@ -54,7 +54,7 @@ export default async function GraciasPage({ params }: Props) {
           )}
           <Link
             href={`/${locale}`}
-            className="inline-flex items-center justify-center border border-[#E7E1D5] hover:border-[#D97706] text-[#44403C] hover:text-[#D97706] font-semibold px-7 py-3.5 rounded-full text-sm transition-colors"
+            className="inline-flex items-center justify-center border border-[#d1fae5] hover:border-[#16a34a] text-[#166534] hover:text-[#16a34a] font-semibold px-7 py-3.5 rounded-full text-sm transition-colors"
           >
             {t.ctaHome}
           </Link>

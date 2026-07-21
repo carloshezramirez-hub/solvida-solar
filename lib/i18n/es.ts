@@ -17,6 +17,11 @@ export const es = {
       "SOLVIDA solar",
       "energía solar Guanajuato",
       "evaluar sistema solar San Miguel de Allende",
+      "empresa solar San Miguel de Allende",
+      "instalar paneles solares casa particular San Miguel",
+      "interconexión CFE San Miguel de Allende",
+      "sistema fotovoltaico residencial Guanajuato",
+      "ahorro energía solar San Miguel de Allende",
     ],
     ogTitle: "SOLVIDA | Paneles Solares en San Miguel de Allende",
     ogDescription:

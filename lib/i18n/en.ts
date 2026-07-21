@@ -19,6 +19,12 @@ export const en: Dictionary = {
       "SOLVIDA solar",
       "solar energy Guanajuato",
       "solar panels Guanajuato Mexico",
+      "expat solar panels San Miguel de Allende",
+      "solar panels English speaking Mexico",
+      "CFE interconnection solar Mexico",
+      "home solar system San Miguel de Allende",
+      "free solar evaluation Mexico",
+      "solar installer San Miguel de Allende",
     ],
     ogTitle: "SOLVIDA | Solar Panels in San Miguel de Allende",
     ogDescription:
