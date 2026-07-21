@@ -20,7 +20,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-[#f0fdf4] transition-colors"
         aria-expanded={open}
       >
-        <span className="text-[#052e16] font-semibold text-sm sm:text-base pr-4">{q}</span>
+        <span className="text-[#052e16] font-semibold text-base sm:text-lg pr-4">{q}</span>
         <span className={`text-[#16a34a] flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -36,7 +36,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <p className="px-5 pb-5 pt-2 text-[#4b6a55] text-sm leading-relaxed bg-[#f0fdf4]">{a}</p>
+            <p className="px-5 pb-6 pt-3 text-[#4b6a55] text-base leading-relaxed bg-[#f0fdf4]">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>

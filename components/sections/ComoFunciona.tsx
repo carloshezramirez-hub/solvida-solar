@@ -45,7 +45,7 @@ export default function ComoFunciona({ dict, locale }: Props) {
               {/* Content */}
               <div className="pb-2">
                 <h3 className="font-semibold text-[#052e16] mb-1.5">{step.title}</h3>
-                <p className="text-[#4b6a55] text-sm leading-relaxed">{step.desc}</p>
+                <p className="text-[#4b6a55] text-base leading-relaxed">{step.desc}</p>
               </div>
             </motion.div>
           ))}

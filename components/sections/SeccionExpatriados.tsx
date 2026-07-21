@@ -87,7 +87,7 @@ export default function SeccionExpatriados({ dict, locale }: Props) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                  <p className="text-[#86efac]/60 text-sm leading-relaxed">{item.desc}</p>
+                  <p className="text-[#86efac]/60 text-base leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}

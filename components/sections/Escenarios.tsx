@@ -53,7 +53,7 @@ export default function Escenarios({ dict, locale }: Props) {
 
               <h3 className="text-lg font-extrabold text-[#052e16] mb-2">{item.name}</h3>
               <p className="text-[#16a34a] text-sm font-semibold mb-3">{item.ideal}</p>
-              <p className="text-[#4b6a55] text-sm leading-relaxed mb-5">{item.desc}</p>
+              <p className="text-[#4b6a55] text-base leading-relaxed mb-5">{item.desc}</p>
 
               <div className="flex-1">
                 <p className="text-[#166534] text-xs font-semibold uppercase tracking-wide mb-2">
@@ -61,7 +61,7 @@ export default function Escenarios({ dict, locale }: Props) {
                 </p>
                 <ul className="space-y-1.5 mb-5">
                   {item.factors.map((f, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-[#4b6a55]">
+                    <li key={j} className="flex items-start gap-2 text-base text-[#4b6a55]">
                       <span className="text-[#16a34a] mt-0.5 flex-shrink-0">·</span>
                       {f}
                     </li>

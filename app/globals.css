@@ -49,6 +49,7 @@ html {
   scroll-behavior: smooth;
   background: #ffffff;
   color: var(--text-dark);
+  font-size: 18px; /* base bump for 50-60+ readability */
 }
 
 body {
@@ -57,11 +58,31 @@ body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.75;
+  font-size: 1rem; /* 18px */
 }
 
 h1, h2, h3, h4, h5 {
   font-family: "Plus Jakarta Sans", sans-serif;
+  line-height: 1.2;
 }
+
+p { line-height: 1.75; }
+
+/* ── Inputs & interactive — min 48px for touch ────── */
+input, select, textarea {
+  font-size: 1rem !important; /* prevents iOS zoom + readable */
+  min-height: 48px;
+  line-height: 1.5;
+}
+
+button, [role="button"] {
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+/* ── Anchor readability ───────────────────────────── */
+a { line-height: 1.5; }
 
 /* ── Reduced motion ───────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

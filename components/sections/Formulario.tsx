@@ -17,10 +17,10 @@ function trackEvent(name: string, params?: Record<string, unknown>) {
 }
 
 const inputClass =
-  "w-full bg-white border border-[#d1fae5] focus:border-[#16a34a] text-[#052e16] placeholder-[#86a990] rounded-xl px-4 py-3 outline-none transition-colors text-sm";
-const labelClass = "block text-[#166534] text-sm font-semibold mb-1.5";
+  "w-full bg-white border border-[#d1fae5] focus:border-[#16a34a] text-[#052e16] placeholder-[#86a990] rounded-xl px-4 py-3 outline-none transition-colors text-base";
+const labelClass = "block text-[#166534] text-base font-semibold mb-2";
 const selectClass =
-  "w-full bg-white border border-[#d1fae5] focus:border-[#16a34a] text-[#052e16] rounded-xl px-4 py-3 outline-none transition-colors text-sm";
+  "w-full bg-white border border-[#d1fae5] focus:border-[#16a34a] text-[#052e16] rounded-xl px-4 py-3 outline-none transition-colors text-base";
 
 export default function Formulario({ dict, locale }: Props) {
   const f = dict.form;
@@ -299,7 +299,7 @@ export default function Formulario({ dict, locale }: Props) {
                 onChange={(e) => { setPrivacyChecked(e.target.checked); setPrivacyError(""); }}
                 className="mt-0.5 accent-[#16a34a] flex-shrink-0"
               />
-              <span className="text-[#4b6a55] text-xs leading-relaxed">
+              <span className="text-[#4b6a55] text-sm leading-relaxed">
                 {f.privacyConsent}{" "}
                 <Link href={privacyLink} className="text-[#16a34a] hover:underline">
                   {f.privacyLink}
@@ -319,7 +319,7 @@ export default function Formulario({ dict, locale }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#16a34a] hover:bg-[#15803d] disabled:opacity-60 text-white font-semibold py-4 rounded-2xl text-base transition-colors shadow-md shadow-green-200"
+            className="w-full bg-[#16a34a] hover:bg-[#15803d] disabled:opacity-60 text-white font-bold py-5 rounded-2xl text-lg transition-colors shadow-md shadow-green-200"
           >
             {loading ? (locale === "en" ? "Sending…" : "Enviando…") : f.submit}
           </button>

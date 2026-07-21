@@ -59,7 +59,7 @@ export default function PorQueSolvida({ dict }: Props) {
                 {icons[i]}
               </div>
               <h3 className="font-semibold text-[#052e16] mb-2">{item.title}</h3>
-              <p className="text-[#4b6a55] text-sm leading-relaxed">{item.desc}</p>
+              <p className="text-[#4b6a55] text-base leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>

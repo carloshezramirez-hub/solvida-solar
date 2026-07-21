@@ -21,7 +21,7 @@ export default function AreaServicio({ dict }: Props) {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#052e16] mb-4">
               {serviceArea.heading}
             </h2>
-            <p className="text-[#4b6a55] text-lg leading-relaxed mb-6">
+            <p className="text-[#4b6a55] text-xl leading-relaxed mb-6">
               {serviceArea.subheading}
             </p>
             <p className="text-[#4b6a55] text-sm mb-8 border border-[#d1fae5] rounded-xl px-4 py-3 bg-[#f0fdf4]">

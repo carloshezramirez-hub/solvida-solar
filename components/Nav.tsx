@@ -51,20 +51,20 @@ export default function Nav({ dict, locale }: Props) {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-[#166534] hover:text-[#16a34a] transition-colors font-medium"
+              className="text-base text-[#166534] hover:text-[#16a34a] transition-colors font-medium"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#formulario"
-            className="bg-[#16a34a] hover:bg-[#15803d] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors shadow-sm"
+            className="bg-[#16a34a] hover:bg-[#15803d] text-white text-base font-semibold px-6 py-2.5 rounded-full transition-colors shadow-sm"
           >
             {dict.nav.ctaNav}
           </a>
           <a
             href={`/${altLocale}`}
-            className="text-xs text-[#4b6a55] hover:text-[#16a34a] transition-colors font-medium border border-[#d1fae5] hover:border-[#86efac] px-2.5 py-1 rounded-full"
+            className="text-sm text-[#4b6a55] hover:text-[#16a34a] transition-colors font-medium border border-[#d1fae5] hover:border-[#86efac] px-3 py-1.5 rounded-full"
             aria-label={dict.nav.langLabel}
           >
             {dict.nav.langSwitch}
@@ -96,7 +96,7 @@ export default function Nav({ dict, locale }: Props) {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-[#166534] hover:text-[#16a34a] font-medium border-b border-[#f0fdf4] transition-colors"
+              className="block py-4 text-lg text-[#166534] hover:text-[#16a34a] font-medium border-b border-[#f0fdf4] transition-colors"
             >
               {l.label}
             </a>
@@ -104,7 +104,7 @@ export default function Nav({ dict, locale }: Props) {
           <a
             href="#formulario"
             onClick={() => setOpen(false)}
-            className="block mt-4 bg-[#16a34a] hover:bg-[#15803d] text-white text-center font-semibold py-3 rounded-full transition-colors"
+            className="block mt-4 bg-[#16a34a] hover:bg-[#15803d] text-white text-center font-bold py-4 rounded-full transition-colors text-lg"
           >
             {dict.nav.ctaNav}
           </a>
