@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Claude-Web", allow: "/" },
       { userAgent: "Googlebot", allow: "/", crawlDelay: 1 },
     ],
-    sitemap: "https://solvida.mx/sitemap.xml",
-    host: "https://solvida.mx",
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || "https://solvida.mx"}/sitemap.xml`,
+    host: process.env.NEXT_PUBLIC_SITE_URL || "https://solvida.mx",
   };
 }

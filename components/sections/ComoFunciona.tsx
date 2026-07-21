@@ -1,92 +1,81 @@
 "use client";
 import { motion } from "framer-motion";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
-const steps = [
-  {
-    num: "01",
-    icon: "📋",
-    title: "Cotiza gratis",
-    desc: "Llena nuestro formulario en 2 minutos. Un experto solar analiza tu consumo y diseña el sistema ideal.",
-  },
-  {
-    num: "02",
-    icon: "📐",
-    title: "Visita técnica",
-    desc: "Nuestro equipo visita tu propiedad para medir el espacio y evaluar la orientación óptima del techo.",
-  },
-  {
-    num: "03",
-    icon: "⚡",
-    title: "Instalación en 3 días",
-    desc: "Técnicos certificados instalan tu sistema completo en 1-3 días con mínima interrupción.",
-  },
-  {
-    num: "04",
-    icon: "☀️",
-    title: "Empieza a generar",
-    desc: "Tu sistema se conecta a la red y comienza a generar energía al instante. Monitórea desde tu celular.",
-  },
-];
+type Props = { dict: Dictionary; locale: Locale };
 
-export default function ComoFunciona() {
+export default function ComoFunciona({ dict }: Props) {
+  const { howItWorks } = dict;
+
   return (
-    <section id="como-funciona" className="py-24 bg-[#0F172A]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="como-funciona" className="py-20 sm:py-28 bg-[#FEFBF6]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="max-w-2xl mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-            Así de{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
-              fácil funciona
-            </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C1917] mb-4">
+            {howItWorks.heading}
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
-            Del primer contacto a los primeros kilowatts, en menos de una semana.
-          </p>
+          <p className="text-[#78716C] text-lg leading-relaxed">{howItWorks.subheading}</p>
         </motion.div>
 
-        <div className="relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-amber-400/30 via-orange-500/30 to-amber-400/30" />
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.num}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="text-center"
-              >
-                <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-slate-800 border-2 border-slate-700 mb-5 text-4xl">
-                  {s.icon}
-                  <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-amber-400 text-slate-900 text-xs font-extrabold flex items-center justify-center">
-                    {i + 1}
-                  </div>
+        <div className="space-y-0">
+          {howItWorks.steps.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex gap-6 pb-8"
+            >
+              {/* Step number + line */}
+              <div className="flex flex-col items-center">
+                <div className="w-9 h-9 rounded-full bg-[#FEF3C7] border-2 border-[#D97706] flex items-center justify-center text-[#D97706] font-extrabold text-sm flex-shrink-0">
+                  {i + 1}
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+                {i < howItWorks.steps.length - 1 && (
+                  <div className="w-0.5 flex-1 bg-[#E7E1D5] mt-2" />
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="pb-2">
+                <h3 className="font-semibold text-[#1C1917] mb-1.5">{step.title}</h3>
+                <p className="text-[#78716C] text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Interconnection note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="bg-[#F5F0E8] border border-[#E7E1D5] rounded-xl p-5 mb-10"
+        >
+          <p className="text-[#78716C] text-sm leading-relaxed">
+            <span className="font-semibold text-[#44403C]">
+              {dict.locale === "en" ? "Note: " : "Nota: "}
+            </span>
+            {howItWorks.interconnectionNote}
+          </p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-14 text-center"
         >
           <a
-            href="#cotizar"
-            className="inline-block bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-900 font-bold px-10 py-4 rounded-full text-lg transition-all shadow-lg shadow-amber-500/25"
+            href="#formulario"
+            className="inline-flex items-center bg-[#D97706] hover:bg-[#B45309] text-white font-semibold px-8 py-4 rounded-full transition-colors"
           >
-            Empezar ahora — es gratis
+            {howItWorks.cta}
           </a>
         </motion.div>
       </div>

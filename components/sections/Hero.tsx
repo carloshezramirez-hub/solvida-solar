@@ -1,139 +1,104 @@
 "use client";
 import { motion } from "framer-motion";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
-const stats = [
-  { value: "95%", label: "Ahorro en CFE" },
-  { value: "3 días", label: "Instalación" },
-  { value: "25 años", label: "Garantía" },
-  { value: "+2,400", label: "Familias con energía solar" },
-];
+type Props = { dict: Dictionary; locale?: Locale };
 
-export default function Hero() {
+export default function Hero({ dict }: Props) {
+  const { hero } = dict;
+  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+  const msg = encodeURIComponent(dict.whatsapp.prefilledMessage);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0F172A]">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-orange-600/5 to-[#0F172A]" />
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-20"
-        style={{ background: "radial-gradient(ellipse at 80% 20%, #F59E0B 0%, transparent 60%)" }}
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#FEFBF6]" aria-label="Hero">
+      {/* Warm atmospheric gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 60% 30%, rgba(217,119,6,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(21,128,61,0.04) 0%, transparent 60%)",
+        }}
       />
 
-      {/* Sun decoration */}
-      <div className="absolute top-20 right-10 md:right-32 w-64 h-64 rounded-full opacity-10"
-        style={{ background: "radial-gradient(circle, #F59E0B 0%, transparent 70%)" }}
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 w-full">
+        <div className="max-w-3xl">
+          {/* Location badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-[#FEF3C7] border border-[#FDE68A] rounded-full px-4 py-1.5 mb-7"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 rounded-full px-4 py-1.5 mb-6"
-            >
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span className="text-amber-400 text-sm font-semibold">Energía solar para México</span>
-            </motion.div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-              Dile adiós a tu{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
-                recibo de CFE
-              </span>
-            </h1>
-
-            <p className="text-slate-400 text-lg mb-8 leading-relaxed max-w-lg">
-              Instala paneles solares en tu hogar o negocio y ahorra hasta el{" "}
-              <strong className="text-white">95% en electricidad</strong>. Financiamiento sin
-              enganche, instalación en 3 días y garantía de 25 años.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#cotizar"
-                className="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-900 font-bold px-8 py-4 rounded-full text-lg transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 text-center"
-              >
-                Cotiza gratis ahora
-              </a>
-              <a
-                href="#calculadora"
-                className="border border-slate-600 hover:border-amber-400 text-white hover:text-amber-400 font-semibold px-8 py-4 rounded-full text-lg transition-all text-center"
-              >
-                Calcula tu ahorro
-              </a>
-            </div>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
+            <span className="text-[#92400E] text-sm font-semibold">{hero.badge}</span>
           </motion.div>
 
-          {/* Visual panel illustration */}
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1C1917] leading-tight mb-6"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            {hero.heading}
+          </motion.h1>
+
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[#44403C] text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl"
+          >
+            {hero.subheading}
+          </motion.p>
+
+          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative hidden md:flex items-center justify-center"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 mb-8"
           >
-            <div className="relative w-full max-w-md">
-              {/* Solar panel grid */}
-              <div className="grid grid-cols-3 gap-3 p-6 bg-slate-800/50 rounded-3xl border border-slate-700 shadow-2xl backdrop-blur-sm">
-                {Array.from({ length: 9 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 + i * 0.07 }}
-                    className="aspect-[4/3] rounded-xl bg-gradient-to-br from-slate-700 to-slate-800 border border-slate-600 relative overflow-hidden"
-                  >
-                    {/* Panel cells */}
-                    <div className="absolute inset-1 grid grid-cols-4 gap-px">
-                      {Array.from({ length: 12 }).map((_, j) => (
-                        <div key={j} className="bg-blue-900/60 rounded-sm" />
-                      ))}
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 to-transparent" />
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 bg-green-500 text-white rounded-2xl px-4 py-2 shadow-lg"
+            <a
+              href="#formulario"
+              className="inline-flex items-center justify-center bg-[#D97706] hover:bg-[#B45309] text-white font-semibold px-8 py-4 rounded-full text-base transition-colors shadow-sm"
+            >
+              {hero.ctaPrimary}
+            </a>
+            {wa && (
+              <a
+                href={`https://wa.me/${wa}?text=${msg}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#E7E1D5] hover:border-[#D97706] text-[#1C1917] hover:text-[#D97706] font-semibold px-8 py-4 rounded-full text-base transition-colors"
               >
-                <div className="text-xs font-semibold">Ahorrando</div>
-                <div className="text-xl font-extrabold">$3,200/mes</div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -left-4 bg-amber-400 text-slate-900 rounded-2xl px-4 py-2 shadow-lg"
-              >
-                <div className="text-xs font-bold">☀️ Hoy generando</div>
-                <div className="text-xl font-extrabold">18.4 kWh</div>
-              </motion.div>
-            </div>
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-[#25D366]">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.124.555 4.118 1.528 5.85L.057 23.928a.5.5 0 0 0 .614.614l6.079-1.471A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.96 0-3.793-.537-5.357-1.471l-.384-.226-3.603.872.871-3.604-.226-.383A9.949 9.949 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+                </svg>
+                {hero.ctaSecondary}
+              </a>
+            )}
           </motion.div>
+
+          {/* Trust line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="text-[#78716C] text-sm"
+          >
+            {hero.trustLine}
+          </motion.p>
         </div>
 
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-slate-800 pt-12"
-        >
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-3xl font-extrabold text-amber-400">{s.value}</div>
-              <div className="text-slate-400 text-sm mt-1">{s.label}</div>
-            </div>
-          ))}
-        </motion.div>
+        {/* Decorative sun element */}
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-[0.06] pointer-events-none hidden lg:block"
+          style={{ background: "radial-gradient(circle, #D97706 0%, transparent 65%)" }}
+          aria-hidden="true"
+        />
       </div>
     </section>
   );

@@ -1,58 +1,87 @@
-export default function Footer() {
+import Link from "next/link";
+import type { Dictionary, Locale } from "@/lib/i18n";
+
+type Props = { dict: Dictionary; locale: Locale };
+
+export default function Footer({ dict, locale }: Props) {
+  const { footer } = dict;
+  const phone = process.env.NEXT_PUBLIC_PHONE_NUMBER || "";
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "";
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 py-12">
+    <footer className="bg-[#1C1917] border-t border-[#292524] py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid sm:grid-cols-3 gap-8 mb-10">
-          <div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Brand */}
+          <div className="lg:col-span-2">
             <div className="text-2xl font-extrabold mb-3" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-              <span className="text-amber-400">SOL</span>
+              <span className="text-[#D97706]">SOL</span>
               <span className="text-white">VIDA</span>
             </div>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              Energía solar para México. Más de 2,400 familias y negocios ahorran con nosotros.
+            <p className="text-[#78716C] text-sm leading-relaxed mb-4 max-w-xs">
+              {footer.tagline}
             </p>
+            <p className="text-[#78716C] text-xs">{footer.serviceArea}</p>
+            <p className="text-[#78716C] text-xs mt-1">{footer.bilingual}</p>
+            {phone && (
+              <a href={`tel:${phone}`} className="block text-[#78716C] hover:text-[#D97706] text-xs mt-2 transition-colors">
+                {phone}
+              </a>
+            )}
+            {email && (
+              <a href={`mailto:${email}`} className="block text-[#78716C] hover:text-[#D97706] text-xs mt-1 transition-colors">
+                {email}
+              </a>
+            )}
           </div>
 
+          {/* Navigation */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Navegación</h4>
-            <ul className="space-y-2 text-slate-500 text-sm">
-              {["#calculadora", "#paquetes", "#como-funciona", "#beneficios", "#faq", "#cotizar"].map((h) => (
-                <li key={h}>
-                  <a href={h} className="hover:text-amber-400 transition-colors capitalize">
-                    {h.replace("#", "").replace("-", " ")}
+            <h4 className="text-white font-semibold text-sm mb-4">{footer.navTitle}</h4>
+            <ul className="space-y-2.5">
+              {footer.navLinks.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className="text-[#78716C] hover:text-[#D97706] text-sm transition-colors">
+                    {l.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Contacto</h4>
-            <ul className="space-y-2 text-slate-500 text-sm">
-              <li>📧 contacto@solvida.mx</li>
-              <li>📞 800-SOLVIDA</li>
-              <li>🌐 Ciudad de México · Nacional</li>
-            </ul>
-            <div className="flex gap-3 mt-4">
-              {["Facebook", "Instagram", "YouTube"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="text-slate-600 hover:text-amber-400 text-sm transition-colors"
-                >
-                  {s}
-                </a>
+            <h4 className="text-white font-semibold text-sm mb-4">{footer.legalTitle}</h4>
+            <ul className="space-y-2.5">
+              {footer.legalLinks.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className="text-[#78716C] hover:text-[#D97706] text-sm transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
               ))}
+            </ul>
+            <div className="mt-4 pt-4 border-t border-[#292524]">
+              <Link
+                href={locale === "en" ? "/es" : "/en"}
+                className="text-[#78716C] hover:text-[#D97706] text-xs transition-colors"
+              >
+                {locale === "en" ? "Español" : "English"}
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-600 text-xs">
-          <span>© {new Date().getFullYear()} SOLVIDA Solar. Todos los derechos reservados.</span>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-amber-400 transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-amber-400 transition-colors">Términos</a>
-          </div>
+        <div className="border-t border-[#292524] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[#44403C] text-xs">
+            © {year} SOLVIDA Solar. {footer.rightsReserved}
+          </p>
+          <p className="text-[#44403C] text-xs">
+            {locale === "en"
+              ? "Residential solar · San Miguel de Allende"
+              : "Solar residencial · San Miguel de Allende"}
+          </p>
         </div>
       </div>
     </footer>
